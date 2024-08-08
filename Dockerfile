@@ -1,7 +1,7 @@
 FROM pihole/pihole:latest
 
-ARG USER
-ARG PASSWORD
+ARG DYNDNS_USER
+ARG DYNDNS_PASSWORD
 
 RUN apt-get update \
    && apt-get install -y iptables
@@ -13,7 +13,7 @@ RUN chmod 500 /usr/lib/cgi-bin/dyndns.cgi \
    && echo "www-data ALL=NOPASSWD: /usr/sbin/iptables" > /etc/sudoers.d/iptables \
    && ln -s /etc/lighttpd/conf-available/10-cgi.conf /etc/lighttpd/conf-enabled/10-cgi.conf \
    && ln -s /etc/lighttpd/conf-available/05-auth.conf /etc/lighttpd/conf-enabled/05-auth.conf \
-   && echo ${USER:?Value is required for http authentication}:${PASSWORD:?Value is required for http authentication} > /etc/lighttpd/pwd.txt \
+   && echo ${DYNDNS_USER:?Value is required for dyndns client authentication}:${DYNDNS_PASSWORD:?Value is required for dyndns client authentication} > /etc/lighttpd/pwd.txt \
    && cat >> /etc/lighttpd/conf-available/05-auth.conf <<EOT
 server.modules += ("mod_authn_file")
 auth.backend = "plain"
