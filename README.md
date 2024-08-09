@@ -22,7 +22,7 @@ the home router that supports a dyndns feature.
 
     docker run -d \
       --name pihole \
-      -p 53:53 \
+      -p 53:53/udp \
       --env TZ=Europe/Berlin \
       --env WEBPASSWORD=... \
       --cap_add NET_ADMIN \

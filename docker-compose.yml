@@ -10,7 +10,6 @@ services:
         DYNDNS_USER: ${DYNDNS_USER:?}
         DYNDNS_PASSWORD: ${DYNDNS_PASSWORD?}
     ports:
-      - "$LISTEN_IP:53:53/tcp"
       - "$LISTEN_IP:53:53/udp"
     environment:
       TZ: "$TZ"
