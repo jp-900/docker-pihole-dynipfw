@@ -37,7 +37,10 @@ RUN mkdir /etc/s6-overlay/s6-rc.d/iptables \
    && chmod u+x /iptables-init \
    && cat > /iptables-init <<EOT
 #!/bin/bash
+# Allow requests from localhost
 iptables -A INPUT -s 127.0.0.1 -p udp --dport 53 -j RETURN
+# This is a placeholder that will be replaced by the user's home IP address
 iptables -A INPUT -s 127.0.1.1 -p udp --dport 53 -j RETURN
+# Block all others
 iptables -A INPUT -p udp --dport 53 -j REJECT
 EOT
