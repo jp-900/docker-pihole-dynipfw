@@ -78,5 +78,14 @@ whitelist one or more docker networks. Example for the default bridge network:
 You can repeat this to add other networks; simply change the network within the
 command.
 
+To view current iptable rules:
+
+    docker exec <pihole-container-name> iptables -nL INPUT
+
 **Important:** Whitelisting anything but a `172.x.0.0/16` network will break
 functionality, see `dyndns.cgi`.
+
+## TODO's
+
+* Integrate DynDNS functionality (forward request to an actual dyndns service)
+* Integrate DNS update via [netcup's API](https://helpcenter.netcup.com/en/wiki/general/our-api)
