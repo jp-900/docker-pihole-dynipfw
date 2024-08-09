@@ -8,9 +8,10 @@ pihole server without the need of a VPN.
 
 This is useful if pihole is running on a remote server rather than in a local
 network.
-Only one IP - the server's owner's home IP - is granted access. Since private IP
-addresses usually change regularly, it needs to be updated. This is initiated by
-your home router's DynDNS client feature.
+Only one IP - the server's owner's home IP - is granted access. Since ISP's
+usually do not assign a static IP to private customers, the IP changes regularly
+and needs to be updated. This is initiated by your home router's DynDNS client
+feature.
 
 ## Build & Run
 
