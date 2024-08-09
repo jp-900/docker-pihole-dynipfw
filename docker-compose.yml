@@ -1,0 +1,32 @@
+# Pihole documentation at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+# For bare pihole without the firewall, we'd remove the `build` section and
+# add `image: pihole/pihole:latest` instead.
+    build:
+      context: .
+      args:
+        DYNDNS_USER: ${DYNDNS_USER:?}
+        DYNDNS_PASSWORD: ${DYNDNS_PASSWORD?}
+    ports:
+      - "$LISTEN_IP:53:53/tcp"
+      - "$LISTEN_IP:53:53/udp"
+    environment:
+      TZ: "$TZ"
+      WEBPASSWORD: "${WEBPASSWORD:?}"
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+# This assumes that a docker network "httpd" already exists.
+# We want pihole to connect to that so we can use apache as a reverse proxy
+# (assumiing that the apache container is in the that same network).
+    networks:
+      - httpd
+
+networks:
+  httpd:
+    external: true
