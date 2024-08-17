@@ -46,7 +46,7 @@ updated by `dyndns.cgi` which is executed when a DynDNS HTTP request is received
 by the integrated webserver.
 
 Most consumer routers have built-in support for DynDNS services. We use this to
-tell pihole that out home IP has changed.
+tell pihole that our home IP has changed.
 
 ### Router config
 
@@ -55,7 +55,7 @@ Assuming that pihole's integrated web interface is available at
 * Update URL: `https://pihole.example.com/cgi-bin/dyndns.cgi`
 * Domain name: *don't care (unused)*
 * Username: *your chosen value for DYNDNS_USER*
-* Password: *your chosen value for _DYNDNS_PASSWORD*
+* Password: *your chosen value for DYNDNS_PASSWORD*
 
 _Note:_ Even though the IP update works, your router may report issues because
 it tries to verify the updated DNS record (which we don't actually update).
